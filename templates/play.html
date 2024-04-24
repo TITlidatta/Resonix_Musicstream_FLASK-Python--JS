@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <style>
+    .dropbtn {
+      background-color: rgb(168, 112, 8);
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 28px;
+      cursor: pointer;
+      margin-top: 21px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: rgb(104, 25, 25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 150%;
+      height: 400px;
+      /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 25px;
+    }
+
+    th {
+      background-color: #c37171;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .column {
+      flex: 1;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      background-color: transparent;
+      border-radius: 18px;
+      border: 2px solid rgb(255, 255, 255);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.819);
+    }
+
+    .row {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #000000;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color:#161616;
+    }
+    #formnow {
+      background-color: #585a65; 
+      padding: 15px; 
+      height: 255px; 
+      max-width: 250px;
+      margin: 0 auto;
+      border-radius: 30px;
+    }
+    #overlay {
+      position: fixed;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .sameline {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      margin: 0;
+      padding: 0;
+      text-decoration: none
+    }
+
+  audio::-webkit-media-controls-play-button,
+     audio::-webkit-media-controls-panel {
+     background-color: rgb(167, 185, 200);
+     color: #000;
+     }
+  </style>
+  <script>
+    var nm= JSON.parse('{{ nm | tojson | safe }}');
+    var id= JSON.parse('{{ id | tojson | safe }}');
+  </script>
+</head>
+
+<body>
+  <header>
+    
+    <div class="sameline" style="height:10px; padding-top:5px;">
+      <div>
+        <font face="Arial" size="5" color="black"><b>Resonix</b></font>
+      </div>
+    </div>
+
+</header>
+<br><hr style="padding-bottom:1px; margin-bottom:7px;">
+
+<div style="background-image:url(https://marketplace.canva.com/EAFhYNEBgyQ/1/0/1600w/canva-dark-blue-minimalist-simple-inspirational-desktop-wallpaper-d64SLaqzQnc.jpg);background-size: cover;margin-left:0px; margin-right:0px;">
+<br>
+
+<div class="container">
+    <!-- Left Column -->
+      <div class="column" style="height:auto; min-height:74vh;">
+        <font face="Brush-Script" size=6 color="white" style="padding-bottom:10px;"> Tracks</font>
+        <hr>
+        <hr style="color:#f1f1f1; padding-bottom:0px;margin-bottom:0px;">
+        {% for i in L %}
+        <div class="d-flex align-items-center; padding-bottom:30px; margin-bottom:10px;">
+          <img src={{ i['pics'] }} style="height:90px;width:130px; padding-top:12px; border-radius:10px;">
+          <p><audio controls style="height:35px; width:480px; margin-left:20px; padding-top:5px; margin-top:25px;"><source  src="/check/{{i['id']}}" type="audio/mpeg">song1</audio></p>
+          <button type="button" class="btn btn-light btn-sm" style="width:55px; margin-left:3px; height:25px; margin-left:10px; border-radius:15px; margin-top:33px;padding-top:0px;"><a href="/page/{{i['id']}}">Lyrics</a></button>
+        </div>
+        <p style="color:#dddddd; margin-top:0px; padding-top:6px;"><i><u>{{i['Name']}}</u> - {{i['Artist']}}</i></p>
+        <hr style="color:#f1f1f1; margin-top:0px; padding-top:0px;">
+        {% endfor %}
+        {% if flag == 1 %}
+        <button class="btn btn-light" style="margin-left:1000px; margin-top:0px; padding-top:0px;padding-left:6px; padding-right:6px; padding-bottom:0px;" onclick="addAA(this)"><b>+</b></button>
+        {% endif %}
+     </div>
+</div>
+<br><br>
+</div>
+<script>
+  function addAA()
+  {
+    var divv = document.createElement("div");
+      divv.id="overlay";
+      divv.style.display = "none";  
+      document.body.appendChild(divv);
+      var form = document.createElement("form");
+      form.classList.add("row", "gy-2", "gx-3", "align-items-center");
+      form.id ="formnow";
+
+      var fields = [
+      { id: "autoSizingInput1", placeholder: "Name", name: "Name" },
+      { id: "autoSizingInput2", placeholder: "Lyrics", name: "lyrics" },
+      { id: "autoSizingInput3", placeholder: "Genre", name: "Genre" },
+      { id: "mp3FileInput", type: "file", name: "song", accept: ".mp3" }, // Input for MP3 file
+      { id: "autoSizingInput4", placeholder: "Poster", name: "poster" }
+  ];
+  
+      fields.forEach(function(field) {
+        var row = document.createElement("div");
+        row.classList.add("row");
+        row.style.paddingBottom = "10px";
+    
+        var col = document.createElement("div");
+        col.classList.add("col-auto");
+    
+        var label = document.createElement("label");
+        label.classList.add("visually-hidden");
+        label.htmlFor = field.id;
+        label.textContent = field.placeholder;
+    
+        var input;
+        if (field.type === "file") {
+            input = document.createElement("input");
+            input.type = "file";
+            input.accept = field.accept; // Set the accept attribute for file type
+            
+        } else {
+            input = document.createElement("input");
+            input.type = "text";
+            input.placeholder = field.placeholder;
+        }
+        input.classList.add("form-control");
+        input.id = field.id;
+        input.name = field.name;
+    
+        col.appendChild(label);
+        col.appendChild(input);
+        row.appendChild(col);
+        form.appendChild(row);
+    });
+    
+
+      
+      var submitRow = document.createElement("div");
+      submitRow.classList.add("row");
+      submitRow.style.paddingLeft = "140px";
+
+      var submitCol = document.createElement("div");
+      submitCol.classList.add("col-auto");
+
+      var submitButton = document.createElement("button");
+      submitButton.type = "submit";
+      submitButton.classList.add("btn", "btn-primary", "btn-sm");
+      submitButton.textContent = "Submit";
+      submitButton.addEventListener("click", function () {
+        subc();
+    });
+
+      submitCol.appendChild(submitButton);
+      submitRow.appendChild(submitCol);
+      form.appendChild(submitRow);
+      divv.appendChild(form);
+      var c =document.getElementById("overlay");
+      c.style.display ="flex";
+  }
+
+  
+  function subc() 
+  {
+    event.preventDefault();
+    
+    var formData = new FormData();
+    var name = document.getElementById("autoSizingInput1").value;
+    var lyrics = document.getElementById("autoSizingInput2").value;
+    var genre = document.getElementById("autoSizingInput3").value;
+    var poster = document.getElementById("autoSizingInput4").value;
+    
+    var mp3FileInput = document.getElementById("mp3FileInput");
+    var mp3File = mp3FileInput.files[0]; 
+    
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var blob = new Blob([event.target.result], { type: mp3File.type });
+        formData.append('song', blob, mp3File.name);
+        
+        formData.append('Name', name);
+        formData.append('Lyrics', lyrics);
+        formData.append('Genre', genre);
+        formData.append('Poster', poster);
+        
+        console.log(formData.get('song'));
+        var adding = 'http://127.0.0.1:5000/addAA/' + nm + "/" + id;
+        fetch(adding, {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                console.log('Request sent successfully');
+                alert('Added it , PLEASE RELOAD ');
+            } else {
+                console.error('Failed to send request:', response.statusText);
+            }
+        }).catch(error => {
+            console.error('Error sending request:', error);
+        });
+    };
+    reader.readAsArrayBuffer(mp3File);
+    var x= document.getElementById("overlay");
+    x.remove();
+}
+</script>
+</body>
+
+</html>
